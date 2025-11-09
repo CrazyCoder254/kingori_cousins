@@ -20,18 +20,17 @@ const Chat = () => {
   useEffect(() => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        navigate("/auth");
-        return;
-      }
-
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", session.user.id)
-        .single();
       
-      setUser(profile);
+      if (session) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", session.user.id)
+          .single();
+        
+        setUser(profile);
+      }
+      
       await loadMessages();
       setLoading(false);
     };
@@ -83,6 +82,11 @@ const Chat = () => {
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newMessage.trim()) return;
+
+    if (!user) {
+      navigate("/auth");
+      return;
+    }
 
     const { error } = await supabase.from("chat_messages").insert({
       user_id: user.id,
@@ -155,10 +159,11 @@ const Chat = () => {
               <Input
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
-                placeholder="Type your message..."
+                placeholder={user ? "Type your message..." : "Login to send messages..."}
                 className="flex-1"
+                disabled={!user}
               />
-              <Button type="submit" className="bg-gold hover:bg-gold/90">
+              <Button type="submit" className="bg-gold hover:bg-gold/90" disabled={!user}>
                 <Send className="h-4 w-4" />
               </Button>
             </form>

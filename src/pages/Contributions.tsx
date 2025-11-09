@@ -29,19 +29,18 @@ const Contributions = () => {
   useEffect(() => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        navigate("/auth");
-        return;
-      }
-
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", session.user.id)
-        .single();
       
-      setUser(profile);
-      await loadContributions(session.user.id);
+      if (session) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", session.user.id)
+          .single();
+        
+        setUser(profile);
+        await loadContributions(session.user.id);
+      }
+      
       setLoading(false);
     };
 
@@ -106,10 +105,11 @@ const Contributions = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-serif font-bold text-primary">Family Contributions</h1>
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-gold hover:bg-gold/90">Make Contribution</Button>
-            </DialogTrigger>
+          {user ? (
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button className="bg-gold hover:bg-gold/90">Make Contribution</Button>
+              </DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle className="font-serif text-primary">New Contribution</DialogTitle>
@@ -163,6 +163,11 @@ const Contributions = () => {
               </form>
             </DialogContent>
           </Dialog>
+          ) : (
+            <Button onClick={() => navigate("/auth")} className="bg-gold hover:bg-gold/90">
+              Login to Contribute
+            </Button>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -201,7 +206,9 @@ const Contributions = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {contributions.length === 0 ? (
+              {!user ? (
+                <p className="text-muted-foreground text-center py-8">Please login to view your contributions</p>
+              ) : contributions.length === 0 ? (
                 <p className="text-muted-foreground text-center py-8">No contributions yet. Make your first contribution!</p>
               ) : (
                 contributions.map((contribution) => (

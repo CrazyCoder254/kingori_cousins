@@ -29,25 +29,24 @@ const Events = () => {
   useEffect(() => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        navigate("/auth");
-        return;
+      
+      if (session) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", session.user.id)
+          .single();
+        
+        const { data: roleData } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", session.user.id)
+          .single();
+        
+        setUser(profile);
+        setUserRole(roleData?.role || "member");
       }
-
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", session.user.id)
-        .single();
       
-      const { data: roleData } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", session.user.id)
-        .single();
-      
-      setUser(profile);
-      setUserRole(roleData?.role || "member");
       await loadEvents();
       setLoading(false);
     };
@@ -86,6 +85,11 @@ const Events = () => {
   };
 
   const handleRSVP = async (eventId: string, status: string) => {
+    if (!user) {
+      navigate("/auth");
+      return;
+    }
+
     const { error } = await supabase.from("event_rsvps").insert({
       event_id: eventId,
       user_id: user.id,

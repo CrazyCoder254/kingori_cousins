@@ -25,18 +25,17 @@ const Blog = () => {
   useEffect(() => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        navigate("/auth");
-        return;
-      }
-
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", session.user.id)
-        .single();
       
-      setUser(profile);
+      if (session) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", session.user.id)
+          .single();
+        
+        setUser(profile);
+      }
+      
       await loadPosts();
       setLoading(false);
     };
@@ -61,6 +60,11 @@ const Blog = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!user) {
+      navigate("/auth");
+      return;
+    }
     
     const { error } = await supabase.from("blog_posts").insert({
       ...formData,
@@ -90,12 +94,13 @@ const Blog = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-serif font-bold text-primary">Family Blog & Talents</h1>
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-gold hover:bg-gold/90">
-                <PenSquare className="mr-2 h-4 w-4" /> Write Post
-              </Button>
-            </DialogTrigger>
+          {user ? (
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button className="bg-gold hover:bg-gold/90">
+                  <PenSquare className="mr-2 h-4 w-4" /> Write Post
+                </Button>
+              </DialogTrigger>
             <DialogContent className="max-w-2xl">
               <DialogHeader>
                 <DialogTitle className="font-serif text-primary">New Blog Post</DialogTitle>
@@ -125,6 +130,11 @@ const Blog = () => {
               </form>
             </DialogContent>
           </Dialog>
+          ) : (
+            <Button onClick={() => navigate("/auth")} className="bg-gold hover:bg-gold/90">
+              <PenSquare className="mr-2 h-4 w-4" /> Login to Post
+            </Button>
+          )}
         </div>
 
         <div className="space-y-6">
