@@ -8,55 +8,56 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Bright & Cheerful family theme */
-    --background: 199 80% 90%; /* Light Sky Blue */
-    --foreground: 214 52% 25%; /* Deep Navy */
+    /* Soft & Warm color palette */
+    --background: 220 14% 96%; /* Soft Gray */
+    --foreground: 0 0% 0%; /* Black */
 
-    --card: 199 85% 95%; /* Lighter Sky Blue */
-    --card-foreground: 214 52% 25%; /* Deep Navy */
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 0 0% 0%; /* Black */
 
-    --popover: 199 85% 95%; /* Lighter Sky Blue */
-    --popover-foreground: 214 52% 25%; /* Deep Navy */
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 0 0% 0%; /* Black */
 
-    /* Coral primary */
-    --primary: 14 100% 70%; /* Coral */
-    --primary-foreground: 214 52% 25%; /* Deep Navy */
+    /* Cool Blue primary */
+    --primary: 200 58% 64%; /* Cool Blue */
+    --primary-foreground: 0 0% 100%; /* White */
 
-    /* Mint Green secondary */
-    --secondary: 122 36% 74%; /* Mint Green */
-    --secondary-foreground: 214 52% 25%; /* Deep Navy */
+    /* Warm Beige secondary */
+    --secondary: 36 45% 88%; /* Warm Beige */
+    --secondary-foreground: 26 25% 44%; /* Warm Brown */
 
-    /* Sky Blue muted */
-    --muted: 199 70% 85%; /* Muted Sky Blue */
-    --muted-foreground: 214 40% 35%; /* Lighter Navy */
+    /* Soft Gray muted */
+    --muted: 220 14% 96%; /* Soft Gray */
+    --muted-foreground: 205 18% 40%; /* Slate */
 
-    /* Lemon Yellow accent */
-    --accent: 54 100% 73%; /* Lemon Yellow */
-    --accent-foreground: 214 52% 25%; /* Deep Navy */
+    /* Soft Blue accent */
+    --accent: 213 60% 85%; /* Soft Blue */
+    --accent-foreground: 205 18% 40%; /* Slate */
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 199 85% 95%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 199 50% 75%;
-    --input: 199 60% 85%;
-    --ring: 14 100% 70%;
+    --border: 213 60% 85%;
+    --input: 220 14% 96%;
+    --ring: 200 58% 64%;
 
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --sky-blue: 199 92% 74%;
-    --lemon: 54 100% 73%;
-    --coral: 14 100% 70%;
-    --mint: 122 36% 74%;
-    --navy: 214 52% 25%;
+    --soft-blue: 213 60% 85%;
+    --warm-beige: 36 45% 88%;
+    --warm-brown: 26 25% 44%;
+    --cool-blue: 200 58% 64%;
+    --slate: 205 18% 40%;
+    --soft-gray: 220 14% 96%;
     
     /* Gradients */
-    --gradient-warm: linear-gradient(135deg, hsl(14 100% 70%), hsl(122 36% 74%));
-    --gradient-subtle: linear-gradient(180deg, hsl(199 85% 95%), hsl(199 70% 85%));
+    --gradient-warm: linear-gradient(135deg, hsl(200 58% 64%), hsl(213 60% 85%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 14% 96%));
     
     /* Shadows */
-    --shadow-gold: 0 10px 30px -10px hsl(14 100% 70% / 0.3);
-    --shadow-elegant: 0 4px 20px -4px hsl(214 52% 25% / 0.15);
+    --shadow-gold: 0 10px 30px -10px hsl(200 58% 64% / 0.3);
+    --shadow-elegant: 0 4px 20px -4px hsl(205 18% 40% / 0.15);
 
     --sidebar-background: 48 40% 99%;
     --sidebar-foreground: 345 25% 25%;
@@ -69,33 +70,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 214 52% 20%; /* Dark Navy */
-    --foreground: 199 80% 85%; /* Light Sky Blue */
+    --background: 205 18% 40%; /* Slate */
+    --foreground: 0 0% 100%; /* White */
 
-    --card: 214 52% 25%; /* Deeper Navy */
-    --card-foreground: 199 80% 85%;
+    --card: 0 0% 0%; /* Black */
+    --card-foreground: 0 0% 100%; /* White */
 
-    --popover: 214 52% 25%;
-    --popover-foreground: 199 80% 85%;
+    --popover: 0 0% 0%; /* Black */
+    --popover-foreground: 0 0% 100%; /* White */
 
-    --primary: 14 100% 75%; /* Lighter Coral */
-    --primary-foreground: 214 52% 20%;
+    --primary: 200 58% 64%; /* Cool Blue */
+    --primary-foreground: 0 0% 100%; /* White */
 
-    --secondary: 122 40% 65%; /* Darker Mint */
-    --secondary-foreground: 199 80% 85%;
+    --secondary: 36 45% 88%; /* Warm Beige */
+    --secondary-foreground: 26 25% 44%; /* Warm Brown */
 
-    --muted: 214 45% 30%;
-    --muted-foreground: 199 60% 70%;
+    --muted: 205 18% 40%; /* Slate */
+    --muted-foreground: 220 14% 96%; /* Soft Gray */
 
-    --accent: 54 100% 80%; /* Brighter Lemon */
-    --accent-foreground: 214 52% 20%;
+    --accent: 213 60% 85%; /* Soft Blue */
+    --accent-foreground: 0 0% 0%; /* Black */
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 199 80% 85%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214 40% 35%;
-    --input: 214 40% 35%;
-    --ring: 14 100% 75%;
+    --border: 205 18% 40%;
+    --input: 205 18% 40%;
+    --ring: 200 58% 64%;
     
     --sidebar-background: 345 25% 12%;
     --sidebar-foreground: 48 40% 90%;
