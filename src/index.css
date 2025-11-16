@@ -8,56 +8,56 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Soft & Warm color palette */
-    --background: 220 14% 96%; /* Soft Gray */
-    --foreground: 0 0% 0%; /* Black */
+    /* Gold & Purple Royal theme */
+    --background: 270 50% 15%; /* Deep Purple */
+    --foreground: 45 100% 70%; /* Bright Gold */
 
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 0 0% 0%; /* Black */
+    --card: 270 45% 20%; /* Lighter Purple */
+    --card-foreground: 45 100% 70%; /* Bright Gold */
 
-    --popover: 0 0% 100%; /* White */
-    --popover-foreground: 0 0% 0%; /* Black */
+    --popover: 270 45% 20%; /* Lighter Purple */
+    --popover-foreground: 45 100% 70%; /* Bright Gold */
 
-    /* Cool Blue primary */
-    --primary: 200 58% 64%; /* Cool Blue */
-    --primary-foreground: 0 0% 100%; /* White */
+    /* Gold primary */
+    --primary: 45 100% 51%; /* Pure Gold */
+    --primary-foreground: 270 50% 15%; /* Deep Purple */
 
-    /* Warm Beige secondary */
-    --secondary: 36 45% 88%; /* Warm Beige */
-    --secondary-foreground: 26 25% 44%; /* Warm Brown */
+    /* Purple secondary */
+    --secondary: 270 60% 40%; /* Rich Purple */
+    --secondary-foreground: 45 100% 70%; /* Bright Gold */
 
-    /* Soft Gray muted */
-    --muted: 220 14% 96%; /* Soft Gray */
-    --muted-foreground: 205 18% 40%; /* Slate */
+    /* Muted Purple */
+    --muted: 270 40% 25%; /* Muted Purple */
+    --muted-foreground: 45 90% 65%; /* Softer Gold */
 
-    /* Soft Blue accent */
-    --accent: 213 60% 85%; /* Soft Blue */
-    --accent-foreground: 205 18% 40%; /* Slate */
+    /* Light Gold accent */
+    --accent: 51 100% 77%; /* Light Gold */
+    --accent-foreground: 270 50% 15%; /* Deep Purple */
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 45 100% 70%;
 
-    --border: 213 60% 85%;
-    --input: 220 14% 96%;
-    --ring: 200 58% 64%;
+    --border: 270 50% 30%;
+    --input: 270 40% 25%;
+    --ring: 45 100% 51%;
 
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --soft-blue: 213 60% 85%;
-    --warm-beige: 36 45% 88%;
-    --warm-brown: 26 25% 44%;
-    --cool-blue: 200 58% 64%;
-    --slate: 205 18% 40%;
-    --soft-gray: 220 14% 96%;
+    --gold: 45 100% 51%;
+    --bright-gold: 45 100% 70%;
+    --light-gold: 51 100% 77%;
+    --deep-purple: 270 50% 15%;
+    --rich-purple: 270 60% 40%;
+    --lavender: 270 60% 65%;
     
     /* Gradients */
-    --gradient-warm: linear-gradient(135deg, hsl(200 58% 64%), hsl(213 60% 85%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 14% 96%));
+    --gradient-warm: linear-gradient(135deg, hsl(45 100% 51%), hsl(270 60% 40%));
+    --gradient-subtle: linear-gradient(180deg, hsl(270 45% 20%), hsl(270 50% 15%));
     
     /* Shadows */
-    --shadow-gold: 0 10px 30px -10px hsl(200 58% 64% / 0.3);
-    --shadow-elegant: 0 4px 20px -4px hsl(205 18% 40% / 0.15);
+    --shadow-gold: 0 10px 30px -10px hsl(45 100% 51% / 0.4);
+    --shadow-elegant: 0 4px 20px -4px hsl(270 60% 40% / 0.3);
 
     --sidebar-background: 48 40% 99%;
     --sidebar-foreground: 345 25% 25%;
@@ -70,33 +70,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 205 18% 40%; /* Slate */
-    --foreground: 0 0% 100%; /* White */
+    --background: 270 60% 10%; /* Darker Purple */
+    --foreground: 51 100% 77%; /* Light Gold */
 
-    --card: 0 0% 0%; /* Black */
-    --card-foreground: 0 0% 100%; /* White */
+    --card: 270 55% 15%; /* Deep Purple Card */
+    --card-foreground: 51 100% 77%; /* Light Gold */
 
-    --popover: 0 0% 0%; /* Black */
-    --popover-foreground: 0 0% 100%; /* White */
+    --popover: 270 55% 15%; /* Deep Purple */
+    --popover-foreground: 51 100% 77%; /* Light Gold */
 
-    --primary: 200 58% 64%; /* Cool Blue */
-    --primary-foreground: 0 0% 100%; /* White */
+    --primary: 45 100% 60%; /* Brighter Gold */
+    --primary-foreground: 270 60% 10%; /* Darker Purple */
 
-    --secondary: 36 45% 88%; /* Warm Beige */
-    --secondary-foreground: 26 25% 44%; /* Warm Brown */
+    --secondary: 270 70% 50%; /* Vibrant Purple */
+    --secondary-foreground: 51 100% 77%; /* Light Gold */
 
-    --muted: 205 18% 40%; /* Slate */
-    --muted-foreground: 220 14% 96%; /* Soft Gray */
+    --muted: 270 50% 20%; /* Muted Dark Purple */
+    --muted-foreground: 45 90% 65%; /* Softer Gold */
 
-    --accent: 213 60% 85%; /* Soft Blue */
-    --accent-foreground: 0 0% 0%; /* Black */
+    --accent: 51 100% 77%; /* Light Gold */
+    --accent-foreground: 270 60% 10%; /* Darker Purple */
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 51 100% 77%;
 
-    --border: 205 18% 40%;
-    --input: 205 18% 40%;
-    --ring: 200 58% 64%;
+    --border: 270 50% 25%;
+    --input: 270 50% 20%;
+    --ring: 45 100% 60%;
     
     --sidebar-background: 345 25% 12%;
     --sidebar-foreground: 48 40% 90%;
