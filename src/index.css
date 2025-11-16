@@ -8,56 +8,61 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Gold & Purple Royal theme */
-    --background: 270 50% 15%; /* Deep Purple */
-    --foreground: 45 100% 70%; /* Bright Gold */
+    /* Bold & Premium color palette */
+    --background: 228 59% 10%; /* Dark Navy */
+    --foreground: 0 0% 100%; /* White */
 
-    --card: 270 45% 20%; /* Lighter Purple */
-    --card-foreground: 45 100% 70%; /* Bright Gold */
+    --card: 0 0% 10%; /* Charcoal */
+    --card-foreground: 0 0% 100%; /* White */
 
-    --popover: 270 45% 20%; /* Lighter Purple */
-    --popover-foreground: 45 100% 70%; /* Bright Gold */
+    --popover: 0 0% 10%; /* Charcoal */
+    --popover-foreground: 0 0% 100%; /* White */
 
-    /* Gold primary */
-    --primary: 45 100% 51%; /* Pure Gold */
-    --primary-foreground: 270 50% 15%; /* Deep Purple */
+    /* Purple primary */
+    --primary: 276 86% 36%; /* Bold Purple */
+    --primary-foreground: 0 0% 100%; /* White */
 
-    /* Purple secondary */
-    --secondary: 270 60% 40%; /* Rich Purple */
-    --secondary-foreground: 45 100% 70%; /* Bright Gold */
+    /* Gold secondary */
+    --secondary: 45 69% 52%; /* Premium Gold */
+    --secondary-foreground: 228 59% 10%; /* Dark Navy */
 
-    /* Muted Purple */
-    --muted: 270 40% 25%; /* Muted Purple */
-    --muted-foreground: 45 90% 65%; /* Softer Gold */
+    /* Muted surfaces */
+    --muted: 0 0% 16%; /* Surface Light */
+    --muted-foreground: 0 0% 73%; /* Text Secondary */
 
-    /* Light Gold accent */
-    --accent: 51 100% 77%; /* Light Gold */
-    --accent-foreground: 270 50% 15%; /* Deep Purple */
+    /* Gold accent */
+    --accent: 45 72% 65%; /* Light Gold */
+    --accent-foreground: 228 59% 10%; /* Dark Navy */
 
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 45 100% 70%;
+    --destructive: 6 63% 46%; /* Crimson */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 270 50% 30%;
-    --input: 270 40% 25%;
-    --ring: 45 100% 51%;
+    --border: 0 0% 23%; /* Divider */
+    --input: 0 0% 10%; /* Input Background */
+    --ring: 276 86% 36%; /* Primary Purple */
 
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --gold: 45 100% 51%;
-    --bright-gold: 45 100% 70%;
-    --light-gold: 51 100% 77%;
-    --deep-purple: 270 50% 15%;
-    --rich-purple: 270 60% 40%;
-    --lavender: 270 60% 65%;
+    --primary-dark: 276 88% 25%; /* Purple Dark */
+    --primary-light: 276 65% 52%; /* Purple Light */
+    --secondary-dark: 45 66% 42%; /* Rich Gold */
+    --secondary-light: 45 72% 65%; /* Soft Gold */
+    --surface: 0 0% 10%; /* Charcoal */
+    --surface-light: 0 0% 16%;
+    --text-secondary: 0 0% 73%;
+    --success: 145 63% 49%; /* Emerald */
+    --warning: 43 100% 44%; /* Amber */
+    --error: 6 63% 46%; /* Crimson */
+    --info: 204 64% 44%; /* Royal Blue */
     
     /* Gradients */
-    --gradient-warm: linear-gradient(135deg, hsl(45 100% 51%), hsl(270 60% 40%));
-    --gradient-subtle: linear-gradient(180deg, hsl(270 45% 20%), hsl(270 50% 15%));
+    --gradient-warm: linear-gradient(135deg, hsl(276 86% 36%), hsl(45 69% 52%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 10%), hsl(228 59% 10%));
     
     /* Shadows */
-    --shadow-gold: 0 10px 30px -10px hsl(45 100% 51% / 0.4);
-    --shadow-elegant: 0 4px 20px -4px hsl(270 60% 40% / 0.3);
+    --shadow-gold: 0 10px 30px -10px hsl(45 69% 52% / 0.4);
+    --shadow-elegant: 0 4px 20px -4px hsl(276 86% 36% / 0.3);
 
     --sidebar-background: 48 40% 99%;
     --sidebar-foreground: 345 25% 25%;
@@ -70,33 +75,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 270 60% 10%; /* Darker Purple */
-    --foreground: 51 100% 77%; /* Light Gold */
+    --background: 228 59% 8%; /* Darker Navy */
+    --foreground: 0 0% 100%; /* White */
 
-    --card: 270 55% 15%; /* Deep Purple Card */
-    --card-foreground: 51 100% 77%; /* Light Gold */
+    --card: 0 0% 8%; /* Darker Charcoal */
+    --card-foreground: 0 0% 100%; /* White */
 
-    --popover: 270 55% 15%; /* Deep Purple */
-    --popover-foreground: 51 100% 77%; /* Light Gold */
+    --popover: 0 0% 8%; /* Darker Charcoal */
+    --popover-foreground: 0 0% 100%; /* White */
 
-    --primary: 45 100% 60%; /* Brighter Gold */
-    --primary-foreground: 270 60% 10%; /* Darker Purple */
+    --primary: 276 86% 42%; /* Brighter Purple */
+    --primary-foreground: 0 0% 100%; /* White */
 
-    --secondary: 270 70% 50%; /* Vibrant Purple */
-    --secondary-foreground: 51 100% 77%; /* Light Gold */
+    --secondary: 45 69% 52%; /* Gold */
+    --secondary-foreground: 228 59% 8%; /* Darker Navy */
 
-    --muted: 270 50% 20%; /* Muted Dark Purple */
-    --muted-foreground: 45 90% 65%; /* Softer Gold */
+    --muted: 0 0% 14%; /* Darker Surface */
+    --muted-foreground: 0 0% 73%; /* Text Secondary */
 
-    --accent: 51 100% 77%; /* Light Gold */
-    --accent-foreground: 270 60% 10%; /* Darker Purple */
+    --accent: 45 72% 65%; /* Light Gold */
+    --accent-foreground: 228 59% 8%; /* Darker Navy */
 
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 51 100% 77%;
+    --destructive: 6 63% 46%; /* Crimson */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 270 50% 25%;
-    --input: 270 50% 20%;
-    --ring: 45 100% 60%;
+    --border: 0 0% 20%; /* Darker Divider */
+    --input: 0 0% 8%; /* Darker Input */
+    --ring: 276 86% 42%; /* Brighter Purple */
     
     --sidebar-background: 345 25% 12%;
     --sidebar-foreground: 48 40% 90%;
