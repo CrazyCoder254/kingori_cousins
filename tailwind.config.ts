@@ -72,6 +72,7 @@ export default {
       backgroundImage: {
         'gradient-warm': 'var(--gradient-warm)',
         'gradient-subtle': 'var(--gradient-subtle)',
+        'gradient-premium': 'var(--gradient-premium)',
       },
       boxShadow: {
         'gold': 'var(--shadow-gold)',
