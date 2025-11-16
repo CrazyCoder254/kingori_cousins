@@ -106,14 +106,30 @@ const Events = () => {
   };
 
   if (loading) {
-    return <div className="min-h-screen bg-gradient-subtle flex items-center justify-center">Loading...</div>;
+    return (
+      <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
+        <div className="fixed inset-0 bg-gradient-subtle" />
+        <div className="relative z-10 text-foreground">Loading...</div>
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <Navigation user={user} />
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Premium gradient background */}
+      <div className="fixed inset-0 bg-gradient-subtle" />
       
-      <div className="container mx-auto px-4 py-8">
+      {/* Animated gradient overlay */}
+      <div className="fixed inset-0 opacity-30">
+        <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" />
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10">
+        <Navigation user={user} />
+      
+        <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-serif font-bold text-primary">Family Events</h1>
           {userRole === "admin" && (
@@ -224,6 +240,7 @@ const Events = () => {
               </Card>
             ))
           )}
+        </div>
         </div>
       </div>
     </div>
