@@ -8,56 +8,55 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Warm & Cozy family theme - no plain whites */
-    --background: 38 35% 92%; /* Warm Sand */
-    --foreground: 0 0% 23%; /* Charcoal */
+    /* Bright & Cheerful family theme */
+    --background: 199 80% 90%; /* Light Sky Blue */
+    --foreground: 214 52% 25%; /* Deep Navy */
 
-    --card: 38 55% 95%; /* Soft Cream */
-    --card-foreground: 0 0% 23%; /* Charcoal */
+    --card: 199 85% 95%; /* Lighter Sky Blue */
+    --card-foreground: 214 52% 25%; /* Deep Navy */
 
-    --popover: 38 55% 95%; /* Soft Cream */
-    --popover-foreground: 0 0% 23%; /* Charcoal */
+    --popover: 199 85% 95%; /* Lighter Sky Blue */
+    --popover-foreground: 214 52% 25%; /* Deep Navy */
 
-    /* Terracotta primary */
-    --primary: 12 45% 58%; /* Terracotta */
-    --primary-foreground: 38 55% 95%; /* Soft Cream */
+    /* Coral primary */
+    --primary: 14 100% 70%; /* Coral */
+    --primary-foreground: 214 52% 25%; /* Deep Navy */
 
-    /* Forest Green secondary */
-    --secondary: 140 17% 36%; /* Forest Green */
-    --secondary-foreground: 38 55% 95%; /* Soft Cream */
+    /* Mint Green secondary */
+    --secondary: 122 36% 74%; /* Mint Green */
+    --secondary-foreground: 214 52% 25%; /* Deep Navy */
 
-    /* Warm Sand muted */
-    --muted: 38 35% 85%; /* Lighter Warm Sand */
-    --muted-foreground: 0 0% 40%; /* Medium Charcoal */
+    /* Sky Blue muted */
+    --muted: 199 70% 85%; /* Muted Sky Blue */
+    --muted-foreground: 214 40% 35%; /* Lighter Navy */
 
-    /* Terracotta accent */
-    --accent: 12 50% 65%; /* Lighter Terracotta */
-    --accent-foreground: 0 0% 23%; /* Charcoal */
+    /* Lemon Yellow accent */
+    --accent: 54 100% 73%; /* Lemon Yellow */
+    --accent-foreground: 214 52% 25%; /* Deep Navy */
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 38 55% 95%;
+    --destructive-foreground: 199 85% 95%;
 
-    --border: 38 30% 80%;
-    --input: 38 30% 88%;
-    --ring: 12 45% 58%;
+    --border: 199 50% 75%;
+    --input: 199 60% 85%;
+    --ring: 14 100% 70%;
 
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --gold: 38 50% 70%; /* Warm gold tone */
-    --maroon: 12 45% 58%; /* Terracotta */
-    --cream: 38 55% 95%; /* Soft Cream */
-    --terracotta: 12 45% 58%;
-    --forest: 140 17% 36%;
-    --charcoal: 0 0% 23%;
+    --sky-blue: 199 92% 74%;
+    --lemon: 54 100% 73%;
+    --coral: 14 100% 70%;
+    --mint: 122 36% 74%;
+    --navy: 214 52% 25%;
     
     /* Gradients */
-    --gradient-warm: linear-gradient(135deg, hsl(12 45% 58%), hsl(140 17% 36%));
-    --gradient-subtle: linear-gradient(180deg, hsl(38 55% 95%), hsl(38 35% 88%));
+    --gradient-warm: linear-gradient(135deg, hsl(14 100% 70%), hsl(122 36% 74%));
+    --gradient-subtle: linear-gradient(180deg, hsl(199 85% 95%), hsl(199 70% 85%));
     
     /* Shadows */
-    --shadow-gold: 0 10px 30px -10px hsl(12 45% 58% / 0.3);
-    --shadow-elegant: 0 4px 20px -4px hsl(0 0% 23% / 0.15);
+    --shadow-gold: 0 10px 30px -10px hsl(14 100% 70% / 0.3);
+    --shadow-elegant: 0 4px 20px -4px hsl(214 52% 25% / 0.15);
 
     --sidebar-background: 48 40% 99%;
     --sidebar-foreground: 345 25% 25%;
@@ -70,33 +69,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 0 0% 15%; /* Dark Charcoal */
-    --foreground: 38 55% 92%; /* Soft Cream */
+    --background: 214 52% 20%; /* Dark Navy */
+    --foreground: 199 80% 85%; /* Light Sky Blue */
 
-    --card: 0 0% 18%; /* Darker Charcoal */
-    --card-foreground: 38 55% 92%;
+    --card: 214 52% 25%; /* Deeper Navy */
+    --card-foreground: 199 80% 85%;
 
-    --popover: 0 0% 18%;
-    --popover-foreground: 38 55% 92%;
+    --popover: 214 52% 25%;
+    --popover-foreground: 199 80% 85%;
 
-    --primary: 12 50% 65%; /* Lighter Terracotta */
-    --primary-foreground: 0 0% 15%;
+    --primary: 14 100% 75%; /* Lighter Coral */
+    --primary-foreground: 214 52% 20%;
 
-    --secondary: 140 17% 45%; /* Lighter Forest */
-    --secondary-foreground: 38 55% 92%;
+    --secondary: 122 40% 65%; /* Darker Mint */
+    --secondary-foreground: 199 80% 85%;
 
-    --muted: 0 0% 25%;
-    --muted-foreground: 38 30% 70%;
+    --muted: 214 45% 30%;
+    --muted-foreground: 199 60% 70%;
 
-    --accent: 12 50% 65%;
-    --accent-foreground: 0 0% 15%;
+    --accent: 54 100% 80%; /* Brighter Lemon */
+    --accent-foreground: 214 52% 20%;
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 38 55% 92%;
+    --destructive-foreground: 199 80% 85%;
 
-    --border: 0 0% 28%;
-    --input: 0 0% 28%;
-    --ring: 12 50% 65%;
+    --border: 214 40% 35%;
+    --input: 214 40% 35%;
+    --ring: 14 100% 75%;
     
     --sidebar-background: 345 25% 12%;
     --sidebar-foreground: 48 40% 90%;
