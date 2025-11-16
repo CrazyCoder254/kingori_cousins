@@ -1,4 +1,4 @@
-# Welcome to your The Kingori Cousins project
+# Welcome to The Kingori Cousins project
 
 ## Project info
 
