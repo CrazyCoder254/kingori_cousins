@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Welcome to your The Kingori Cousins project
 
 ## Project info
 
@@ -8,11 +8,8 @@
 
 There are several ways of editing your application.
 
-**Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4605a3ee-43a8-4f4a-bca8-b8ecc72e736d) and start prompting.
 
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
