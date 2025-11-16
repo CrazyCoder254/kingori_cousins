@@ -60,6 +60,9 @@ export default {
         gold: "hsl(var(--gold))",
         maroon: "hsl(var(--maroon))",
         cream: "hsl(var(--cream))",
+        terracotta: "hsl(var(--terracotta))",
+        forest: "hsl(var(--forest))",
+        charcoal: "hsl(var(--charcoal))",
       },
       backgroundImage: {
         'gradient-warm': 'var(--gradient-warm)',
