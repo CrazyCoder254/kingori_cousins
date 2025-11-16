@@ -68,8 +68,19 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <Navigation user={user} />
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Premium gradient background */}
+      <div className="fixed inset-0 bg-gradient-subtle" />
+      
+      {/* Animated gradient overlay */}
+      <div className="fixed inset-0 opacity-30">
+        <div className="absolute top-1/3 right-1/3 w-[500px] h-[500px] bg-primary/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" />
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10">
+        <Navigation user={user} />
       
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
@@ -187,6 +198,7 @@ const Index = () => {
           <p className="font-serif">© 2025 Kingori Family Cousins. Built with love.</p>
         </div>
       </footer>
+      </div>
     </div>
   );
 };
