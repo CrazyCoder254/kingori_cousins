@@ -10,6 +10,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Users, Calendar, Image, BarChart3, MessageCircle, BookOpen } from "lucide-react";
+import crownLogo from "@/assets/crown-logo.png";
 
 interface NavigationProps {
   user: any;
@@ -31,7 +32,8 @@ const Navigation = ({ user }: NavigationProps) => {
     <nav className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-3">
+            <img src={crownLogo} alt="Crown Logo" className="w-10 h-10" />
             <span className="text-xl font-serif font-semibold text-primary">Kingori Family</span>
           </Link>
 
