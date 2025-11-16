@@ -4,7 +4,8 @@ import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, Calendar, TrendingUp, MessageCircle } from "lucide-react";
+import { Users, Calendar, TrendingUp, MessageCircle, Cake, BookOpen, Image } from "lucide-react";
+import { format, isToday, isTomorrow, parseISO } from "date-fns";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -15,7 +16,11 @@ const Dashboard = () => {
     upcomingEvents: 0,
     totalMembers: 0,
     unreadMessages: 0,
+    totalPosts: 0,
+    totalPhotos: 0,
   });
+  const [upcomingBirthdays, setUpcomingBirthdays] = useState<any[]>([]);
+  const [recentEvents, setRecentEvents] = useState<any[]>([]);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -34,7 +39,7 @@ const Dashboard = () => {
       setUser(profile);
       
       // Fetch dashboard stats
-      const [contributions, events, members] = await Promise.all([
+      const [contributions, events, members, posts, photos, upcomingEventsData, profilesData] = await Promise.all([
         supabase
           .from("contributions")
           .select("amount")
@@ -46,6 +51,23 @@ const Dashboard = () => {
         supabase
           .from("profiles")
           .select("id", { count: "exact", head: true }),
+        supabase
+          .from("blog_posts")
+          .select("id", { count: "exact", head: true })
+          .eq("status", "published"),
+        supabase
+          .from("gallery_photos")
+          .select("id", { count: "exact", head: true }),
+        supabase
+          .from("events")
+          .select("*")
+          .gte("event_date", new Date().toISOString())
+          .order("event_date", { ascending: true })
+          .limit(3),
+        supabase
+          .from("profiles")
+          .select("full_name, birthday")
+          .not("birthday", "is", null),
       ]);
 
       const myTotal = contributions.data?.reduce((sum, c) => sum + Number(c.amount), 0) || 0;
@@ -55,7 +77,47 @@ const Dashboard = () => {
         upcomingEvents: events.count || 0,
         totalMembers: members.count || 0,
         unreadMessages: 0,
+        totalPosts: posts.count || 0,
+        totalPhotos: photos.count || 0,
       });
+
+      // Process upcoming birthdays
+      if (profilesData.data) {
+        const today = new Date();
+        const currentMonth = today.getMonth();
+        const currentDay = today.getDate();
+        
+        const birthdaysWithDays = profilesData.data
+          .map((p: any) => {
+            if (!p.birthday) return null;
+            const bday = parseISO(p.birthday);
+            const bdayMonth = bday.getMonth();
+            const bdayDay = bday.getDate();
+            
+            let daysUntil;
+            if (bdayMonth === currentMonth && bdayDay === currentDay) {
+              daysUntil = 0;
+            } else if (bdayMonth === currentMonth && bdayDay > currentDay) {
+              daysUntil = bdayDay - currentDay;
+            } else if (bdayMonth > currentMonth) {
+              const daysInCurrentMonth = new Date(today.getFullYear(), currentMonth + 1, 0).getDate();
+              daysUntil = (daysInCurrentMonth - currentDay) + bdayDay + (bdayMonth - currentMonth - 1) * 30;
+            } else {
+              const daysInCurrentMonth = new Date(today.getFullYear(), currentMonth + 1, 0).getDate();
+              const monthsUntil = (12 - currentMonth) + bdayMonth;
+              daysUntil = (daysInCurrentMonth - currentDay) + bdayDay + (monthsUntil - 1) * 30;
+            }
+            
+            return { ...p, daysUntil };
+          })
+          .filter((p: any) => p !== null && p.daysUntil <= 30)
+          .sort((a: any, b: any) => a.daysUntil - b.daysUntil)
+          .slice(0, 5);
+        
+        setUpcomingBirthdays(birthdaysWithDays);
+      }
+
+      setRecentEvents(upcomingEventsData.data || []);
 
       setLoading(false);
     };
