@@ -13,6 +13,7 @@ const signupSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
+  birthday: z.string().min(1, "Birthday is required"),
 });
 
 const loginSchema = z.object({
@@ -44,6 +45,7 @@ const Auth = () => {
       fullName: formData.get("fullName") as string,
       email: formData.get("email") as string,
       password: formData.get("password") as string,
+      birthday: formData.get("birthday") as string,
     };
 
     try {
@@ -56,6 +58,7 @@ const Auth = () => {
           emailRedirectTo: `${window.location.origin}/`,
           data: {
             full_name: data.fullName,
+            birthday: data.birthday,
           },
         },
       });
@@ -164,6 +167,15 @@ const Auth = () => {
                     name="fullName"
                     type="text"
                     placeholder="John Kingori"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="signup-birthday">Birthday</Label>
+                  <Input
+                    id="signup-birthday"
+                    name="birthday"
+                    type="date"
                     required
                   />
                 </div>
