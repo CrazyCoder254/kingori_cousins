@@ -7,8 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
-import { Image, Plus, FolderOpen } from "lucide-react";
+import { Image, Plus, FolderOpen, Upload, Trash2 } from "lucide-react";
 
 const Gallery = () => {
   const navigate = useNavigate();
@@ -20,6 +21,9 @@ const Gallery = () => {
   const [userRole, setUserRole] = useState<string>("");
   const [openAlbum, setOpenAlbum] = useState(false);
   const [albumData, setAlbumData] = useState({ title: "", description: "" });
+  const [openPhotoUpload, setOpenPhotoUpload] = useState(false);
+  const [photoCaption, setPhotoCaption] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -94,6 +98,72 @@ const Gallery = () => {
   const viewAlbum = (album: any) => {
     setSelectedAlbum(album);
     loadPhotos(album.id);
+  };
+
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || !e.target.files[0] || !selectedAlbum) return;
+    
+    setUploading(true);
+    const file = e.target.files[0];
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${user.id}/${Math.random()}.${fileExt}`;
+
+    try {
+      const { error: uploadError, data } = await supabase.storage
+        .from('gallery-photos')
+        .upload(fileName, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('gallery-photos')
+        .getPublicUrl(fileName);
+
+      const { error: dbError } = await supabase
+        .from('gallery_photos')
+        .insert({
+          album_id: selectedAlbum.id,
+          image_url: publicUrl,
+          caption: photoCaption,
+          uploaded_by: user.id,
+        });
+
+      if (dbError) throw dbError;
+
+      toast({ title: "Photo uploaded successfully!" });
+      setOpenPhotoUpload(false);
+      setPhotoCaption("");
+      loadPhotos(selectedAlbum.id);
+    } catch (error: any) {
+      toast({ title: "Error uploading photo", description: error.message, variant: "destructive" });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleDeletePhoto = async (photo: any) => {
+    if (photo.uploaded_by !== user.id && userRole !== "admin") {
+      toast({ title: "You can only delete your own photos", variant: "destructive" });
+      return;
+    }
+
+    try {
+      const fileName = photo.image_url.split('/').slice(-2).join('/');
+      
+      await supabase.storage.from('gallery-photos').remove([fileName]);
+      
+      const { error } = await supabase
+        .from('gallery_photos')
+        .delete()
+        .eq('id', photo.id);
+
+      if (error) throw error;
+
+      toast({ title: "Photo deleted successfully!" });
+      loadPhotos(selectedAlbum.id);
+    } catch (error: any) {
+      toast({ title: "Error deleting photo", description: error.message, variant: "destructive" });
+    }
   };
 
   if (loading) {
@@ -203,10 +273,47 @@ const Gallery = () => {
           <div>
             <Card className="shadow-elegant mb-6">
               <CardHeader>
-                <CardTitle className="font-serif text-primary">{selectedAlbum.title}</CardTitle>
-                {selectedAlbum.description && (
-                  <CardDescription>{selectedAlbum.description}</CardDescription>
-                )}
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="font-serif text-primary">{selectedAlbum.title}</CardTitle>
+                    {selectedAlbum.description && (
+                      <CardDescription>{selectedAlbum.description}</CardDescription>
+                    )}
+                  </div>
+                  <Dialog open={openPhotoUpload} onOpenChange={setOpenPhotoUpload}>
+                    <DialogTrigger asChild>
+                      <Button className="bg-secondary hover:bg-secondary/90 text-surface">
+                        <Upload className="mr-2 h-4 w-4" /> Upload Photo
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle className="font-serif text-primary">Upload Photo</DialogTitle>
+                        <DialogDescription>Add a new photo to {selectedAlbum.title}</DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <div>
+                          <Label>Photo</Label>
+                          <Input
+                            type="file"
+                            accept="image/*"
+                            onChange={handlePhotoUpload}
+                            disabled={uploading}
+                          />
+                        </div>
+                        <div>
+                          <Label>Caption (optional)</Label>
+                          <Textarea
+                            value={photoCaption}
+                            onChange={(e) => setPhotoCaption(e.target.value)}
+                            placeholder="Add a caption for your photo..."
+                            disabled={uploading}
+                          />
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
               </CardHeader>
             </Card>
             
@@ -220,10 +327,22 @@ const Gallery = () => {
                 </Card>
               ) : (
                 photos.map((photo) => (
-                  <Card key={photo.id} className="shadow-elegant border-gold/20 hover:border-gold/50 transition-all overflow-hidden">
-                    <div className="aspect-square bg-gradient-warm flex items-center justify-center">
-                      <Image className="h-12 w-12 text-white/50" />
+                  <Card key={photo.id} className="shadow-elegant border-primary/20 hover:border-secondary/50 transition-all overflow-hidden group relative">
+                    <div className="aspect-square bg-gradient-subtle flex items-center justify-center overflow-hidden">
+                      {photo.image_url ? (
+                        <img src={photo.image_url} alt={photo.caption || "Gallery photo"} className="w-full h-full object-cover" />
+                      ) : (
+                        <Image className="h-12 w-12 text-muted-foreground" />
+                      )}
                     </div>
+                    {(photo.uploaded_by === user?.id || userRole === "admin") && (
+                      <button
+                        onClick={() => handleDeletePhoto(photo)}
+                        className="absolute top-2 right-2 bg-error/90 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    )}
                     {photo.caption && (
                       <CardContent className="p-2">
                         <p className="text-xs">{photo.caption}</p>

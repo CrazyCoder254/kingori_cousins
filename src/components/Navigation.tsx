@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Users, Calendar, Image, BarChart3, MessageCircle, BookOpen } from "lucide-react";
+import { Users, Calendar, Image, BarChart3, MessageCircle, BookOpen, UsersRound } from "lucide-react";
 import crownLogo from "@/assets/crown-logo.png";
 
 interface NavigationProps {
@@ -40,6 +40,10 @@ const Navigation = ({ user }: NavigationProps) => {
           <div className="hidden md:flex items-center gap-6">
             <Link to="/dashboard" className="text-sm font-medium hover:text-primary transition-colors">
               Dashboard
+            </Link>
+            <Link to="/family-members" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+              <UsersRound className="w-4 h-4" />
+              Members
             </Link>
             <Link to="/contributions" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
               <Users className="w-4 h-4" />
