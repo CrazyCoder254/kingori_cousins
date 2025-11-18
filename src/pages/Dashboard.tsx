@@ -191,7 +191,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="shadow-elegant hover:shadow-gold transition-shadow">
+          <Card className="shadow-elegant hover:shadow-gold transition-shadow cursor-pointer" onClick={() => navigate("/family-members")}>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -217,27 +217,31 @@ const Dashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <Card className="shadow-elegant">
+        <Card className="shadow-elegant mb-8">
           <CardHeader>
             <CardTitle className="font-serif">Quick Actions</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-auto py-4 flex flex-col gap-2" onClick={() => navigate("/contributions")}>
-                <TrendingUp className="w-6 h-6" />
-                <span>Contribute</span>
-              </Button>
-              <Button variant="outline" className="h-auto py-4 flex flex-col gap-2" onClick={() => navigate("/events")}>
-                <Calendar className="w-6 h-6" />
-                <span>View Events</span>
-              </Button>
-              <Button variant="outline" className="h-auto py-4 flex flex-col gap-2" onClick={() => navigate("/gallery")}>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <Button variant="outline" className="h-auto py-4 flex flex-col gap-2 hover:border-secondary hover:text-secondary" onClick={() => navigate("/family-members")}>
                 <Users className="w-6 h-6" />
-                <span>Gallery</span>
+                <span className="text-xs">View Members</span>
               </Button>
-              <Button variant="outline" className="h-auto py-4 flex flex-col gap-2" onClick={() => navigate("/chat")}>
+              <Button variant="outline" className="h-auto py-4 flex flex-col gap-2 hover:border-secondary hover:text-secondary" onClick={() => navigate("/gallery")}>
+                <Image className="w-6 h-6" />
+                <span className="text-xs">Upload Photos</span>
+              </Button>
+              <Button variant="outline" className="h-auto py-4 flex flex-col gap-2 hover:border-secondary hover:text-secondary" onClick={() => navigate("/blog")}>
+                <BookOpen className="w-6 h-6" />
+                <span className="text-xs">Write Blog</span>
+              </Button>
+              <Button variant="outline" className="h-auto py-4 flex flex-col gap-2 hover:border-secondary hover:text-secondary" onClick={() => navigate("/events")}>
+                <Calendar className="w-6 h-6" />
+                <span className="text-xs">View Events</span>
+              </Button>
+              <Button variant="outline" className="h-auto py-4 flex flex-col gap-2 hover:border-secondary hover:text-secondary" onClick={() => navigate("/chat")}>
                 <MessageCircle className="w-6 h-6" />
-                <span>Family Chat</span>
+                <span className="text-xs">Family Chat</span>
               </Button>
             </div>
           </CardContent>

@@ -24,6 +24,7 @@ const Gallery = () => {
   const [openPhotoUpload, setOpenPhotoUpload] = useState(false);
   const [photoCaption, setPhotoCaption] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -100,18 +101,26 @@ const Gallery = () => {
     loadPhotos(album.id);
   };
 
-  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || !e.target.files[0] || !selectedAlbum) return;
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
+  const handlePhotoUpload = async () => {
+    if (!selectedFile || !selectedAlbum || !user) {
+      toast({ title: "Please select a file", variant: "destructive" });
+      return;
+    }
     
     setUploading(true);
-    const file = e.target.files[0];
-    const fileExt = file.name.split('.').pop();
+    const fileExt = selectedFile.name.split('.').pop();
     const fileName = `${user.id}/${Math.random()}.${fileExt}`;
 
     try {
       const { error: uploadError, data } = await supabase.storage
         .from('gallery-photos')
-        .upload(fileName, file);
+        .upload(fileName, selectedFile);
 
       if (uploadError) throw uploadError;
 
@@ -133,6 +142,7 @@ const Gallery = () => {
       toast({ title: "Photo uploaded successfully!" });
       setOpenPhotoUpload(false);
       setPhotoCaption("");
+      setSelectedFile(null);
       loadPhotos(selectedAlbum.id);
     } catch (error: any) {
       toast({ title: "Error uploading photo", description: error.message, variant: "destructive" });
@@ -194,8 +204,11 @@ const Gallery = () => {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-serif font-bold text-primary">Family Gallery</h1>
+            <p className="text-sm text-muted-foreground mt-1">
+              {!selectedAlbum ? "Select an album to view and upload photos" : "Click 'Upload Photo' to add new photos"}
+            </p>
             {selectedAlbum && (
-              <Button variant="link" onClick={() => setSelectedAlbum(null)} className="text-gold p-0">
+              <Button variant="link" onClick={() => setSelectedAlbum(null)} className="text-secondary p-0 mt-2">
                 ← Back to Albums
               </Button>
             )}
@@ -297,9 +310,14 @@ const Gallery = () => {
                           <Input
                             type="file"
                             accept="image/*"
-                            onChange={handlePhotoUpload}
+                            onChange={handleFileSelect}
                             disabled={uploading}
                           />
+                          {selectedFile && (
+                            <p className="text-sm text-muted-foreground mt-1">
+                              Selected: {selectedFile.name}
+                            </p>
+                          )}
                         </div>
                         <div>
                           <Label>Caption (optional)</Label>
@@ -310,6 +328,13 @@ const Gallery = () => {
                             disabled={uploading}
                           />
                         </div>
+                        <Button 
+                          onClick={handlePhotoUpload} 
+                          disabled={!selectedFile || uploading}
+                          className="w-full bg-primary hover:bg-primary/90"
+                        >
+                          {uploading ? "Uploading..." : "Upload Photo"}
+                        </Button>
                       </div>
                     </DialogContent>
                   </Dialog>
