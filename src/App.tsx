@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import FamilyMembers from "./pages/FamilyMembers";
 import Contributions from "./pages/Contributions";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/family-members" element={<FamilyMembers />} />
           <Route path="/contributions" element={<Contributions />} />
           <Route path="/events" element={<Events />} />
           <Route path="/gallery" element={<Gallery />} />
