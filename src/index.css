@@ -8,111 +8,113 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Fresh & Vibrant color palette */
-    --background: 250 30% 98%; /* Soft White */
-    --foreground: 250 25% 15%; /* Deep Purple Gray */
+    /* Rich Dark with Vibrant Colors */
+    --background: 260 25% 11%; /* Deep Purple-Navy */
+    --foreground: 0 0% 98%; /* Off White */
 
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 250 25% 15%; /* Deep Purple Gray */
+    --card: 260 20% 15%; /* Dark Purple Card */
+    --card-foreground: 0 0% 98%; /* Off White */
 
-    --popover: 0 0% 100%; /* White */
-    --popover-foreground: 250 25% 15%; /* Deep Purple Gray */
+    --popover: 260 20% 15%; /* Dark Purple Card */
+    --popover-foreground: 0 0% 98%; /* Off White */
 
-    /* Light Lavender Purple primary */
-    --primary: 270 60% 60%; /* Light Lavender Purple */
-    --primary-foreground: 0 0% 100%; /* White */
+    /* Vibrant Lavender Purple */
+    --primary: 270 70% 65%; /* Bright Lavender */
+    --primary-foreground: 260 25% 11%; /* Dark Background */
 
-    /* Teal secondary */
-    --secondary: 175 55% 45%; /* Teal */
-    --secondary-foreground: 0 0% 100%; /* White */
+    /* Teal/Cyan secondary */
+    --secondary: 175 65% 50%; /* Vibrant Teal */
+    --secondary-foreground: 260 25% 11%; /* Dark Background */
 
     /* Muted surfaces */
-    --muted: 250 20% 94%; /* Light Gray Purple */
-    --muted-foreground: 250 15% 45%; /* Medium Gray */
+    --muted: 260 18% 22%; /* Dark Muted */
+    --muted-foreground: 260 10% 65%; /* Light Gray */
 
-    /* Coral accent */
-    --accent: 15 85% 65%; /* Coral */
-    --accent-foreground: 0 0% 100%; /* White */
+    /* Warm Coral/Peach accent */
+    --accent: 25 90% 60%; /* Warm Coral */
+    --accent-foreground: 260 25% 11%; /* Dark Background */
 
-    --destructive: 0 70% 55%; /* Soft Red */
+    --destructive: 0 72% 55%; /* Bright Red */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 250 20% 88%; /* Light Border */
-    --input: 250 20% 96%; /* Light Input */
-    --ring: 270 60% 60%; /* Primary Purple */
+    --border: 260 15% 25%; /* Purple-tinted Border */
+    --input: 260 20% 18%; /* Dark Input */
+    --ring: 270 70% 65%; /* Primary Lavender */
 
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --primary-dark: 270 55% 50%; /* Darker Lavender */
-    --primary-light: 270 65% 72%; /* Lighter Lavender */
-    --secondary-dark: 175 50% 38%; /* Dark Teal */
-    --secondary-light: 175 55% 55%; /* Light Teal */
-    --surface: 0 0% 100%; /* White */
-    --surface-light: 250 20% 97%;
-    --text-secondary: 250 15% 45%;
-    --success: 145 55% 48%; /* Green */
-    --warning: 40 90% 55%; /* Amber */
-    --error: 0 70% 55%; /* Red */
-    --info: 200 70% 50%; /* Sky Blue */
-    --gold: 45 80% 55%; /* Gold accent */
+    --primary-dark: 270 60% 50%; /* Deeper Lavender */
+    --primary-light: 270 75% 75%; /* Soft Lavender */
+    --secondary-dark: 175 55% 40%; /* Deep Teal */
+    --secondary-light: 175 70% 60%; /* Light Teal */
+    --surface: 260 20% 15%; /* Card Surface */
+    --surface-light: 260 18% 20%;
+    --text-secondary: 260 10% 65%;
+    --success: 155 70% 50%; /* Bright Green */
+    --warning: 38 95% 55%; /* Golden Amber */
+    --error: 0 72% 55%; /* Bright Red */
+    --info: 200 80% 55%; /* Sky Blue */
+    --gold: 45 85% 58%; /* Rich Gold */
     
-    /* Gradients */
-    --gradient-warm: linear-gradient(135deg, hsl(270 60% 60%), hsl(175 55% 45%));
-    --gradient-subtle: linear-gradient(160deg, hsl(270 60% 60% / 0.08) 0%, hsl(250 30% 98%) 50%, hsl(175 55% 45% / 0.08) 100%);
-    --gradient-premium: linear-gradient(135deg, hsl(270 60% 60% / 0.1), hsl(250 30% 98%), hsl(15 85% 65% / 0.08));
+    /* Gradients - more vibrant */
+    --gradient-warm: linear-gradient(135deg, hsl(270 70% 65%), hsl(175 65% 50%));
+    --gradient-subtle: linear-gradient(160deg, hsl(270 70% 50% / 0.15) 0%, hsl(260 25% 11%) 40%, hsl(175 65% 40% / 0.12) 100%);
+    --gradient-premium: linear-gradient(135deg, hsl(270 70% 55% / 0.2), hsl(260 25% 13%), hsl(25 90% 55% / 0.15));
+    --gradient-card: linear-gradient(145deg, hsl(260 20% 17%), hsl(260 20% 13%));
     
-    /* Shadows */
-    --shadow-gold: 0 10px 30px -10px hsl(45 80% 55% / 0.3);
-    --shadow-elegant: 0 4px 20px -4px hsl(270 60% 60% / 0.2);
+    /* Shadows - colorful */
+    --shadow-gold: 0 10px 40px -10px hsl(45 85% 58% / 0.35);
+    --shadow-elegant: 0 8px 30px -8px hsl(270 70% 65% / 0.4);
+    --shadow-teal: 0 8px 30px -8px hsl(175 65% 50% / 0.3);
 
-    --sidebar-background: 250 30% 98%;
-    --sidebar-foreground: 250 25% 25%;
-    --sidebar-primary: 270 60% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 250 20% 94%;
-    --sidebar-accent-foreground: 250 25% 25%;
-    --sidebar-border: 250 20% 88%;
-    --sidebar-ring: 270 60% 60%;
+    --sidebar-background: 260 22% 13%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 270 70% 65%;
+    --sidebar-primary-foreground: 260 25% 11%;
+    --sidebar-accent: 260 18% 20%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 260 15% 22%;
+    --sidebar-ring: 270 70% 65%;
   }
 
   .dark {
-    --background: 250 25% 12%; /* Dark Purple Gray */
+    --background: 260 28% 8%; /* Even Darker Purple */
     --foreground: 0 0% 98%; /* Off White */
 
-    --card: 250 25% 16%; /* Dark Card */
+    --card: 260 22% 12%; /* Darker Card */
     --card-foreground: 0 0% 98%; /* Off White */
 
-    --popover: 250 25% 16%; /* Dark Card */
+    --popover: 260 22% 12%; /* Darker Card */
     --popover-foreground: 0 0% 98%; /* Off White */
 
-    --primary: 270 65% 68%; /* Lighter Lavender */
-    --primary-foreground: 250 25% 12%; /* Dark Background */
+    --primary: 270 75% 70%; /* Brighter Lavender */
+    --primary-foreground: 260 28% 8%; /* Dark Background */
 
-    --secondary: 175 55% 50%; /* Teal */
-    --secondary-foreground: 250 25% 12%; /* Dark Background */
+    --secondary: 175 70% 55%; /* Brighter Teal */
+    --secondary-foreground: 260 28% 8%; /* Dark Background */
 
-    --muted: 250 20% 22%; /* Dark Muted */
-    --muted-foreground: 250 15% 65%; /* Light Gray */
+    --muted: 260 18% 18%; /* Darker Muted */
+    --muted-foreground: 260 10% 60%; /* Light Gray */
 
-    --accent: 15 80% 60%; /* Coral */
-    --accent-foreground: 250 25% 12%; /* Dark Background */
+    --accent: 25 85% 58%; /* Warm Coral */
+    --accent-foreground: 260 28% 8%; /* Dark Background */
 
-    --destructive: 0 65% 50%; /* Red */
+    --destructive: 0 70% 52%; /* Bright Red */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 250 20% 25%; /* Dark Border */
-    --input: 250 25% 18%; /* Dark Input */
-    --ring: 270 65% 68%; /* Lighter Lavender */
+    --border: 260 15% 20%; /* Dark Border */
+    --input: 260 22% 14%; /* Dark Input */
+    --ring: 270 75% 70%; /* Brighter Lavender */
     
-    --sidebar-background: 250 25% 14%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 270 65% 68%;
-    --sidebar-primary-foreground: 250 25% 12%;
-    --sidebar-accent: 250 20% 20%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 250 20% 22%;
-    --sidebar-ring: 270 65% 68%;
+    --sidebar-background: 260 25% 10%;
+    --sidebar-foreground: 0 0% 92%;
+    --sidebar-primary: 270 75% 70%;
+    --sidebar-primary-foreground: 260 28% 8%;
+    --sidebar-accent: 260 18% 16%;
+    --sidebar-accent-foreground: 0 0% 92%;
+    --sidebar-border: 260 15% 18%;
+    --sidebar-ring: 270 75% 70%;
   }
 }
 
