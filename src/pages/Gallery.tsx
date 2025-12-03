@@ -108,8 +108,13 @@ const Gallery = () => {
   };
 
   const handlePhotoUpload = async () => {
-    if (!selectedFile || !selectedAlbum || !user) {
+    if (!selectedFile || !selectedAlbum) {
       toast({ title: "Please select a file", variant: "destructive" });
+      return;
+    }
+    
+    if (!user) {
+      toast({ title: "Please login to upload photos", variant: "destructive" });
       return;
     }
     
@@ -216,7 +221,7 @@ const Gallery = () => {
           {userRole === "admin" && !selectedAlbum && (
             <Dialog open={openAlbum} onOpenChange={setOpenAlbum}>
               <DialogTrigger asChild>
-                <Button className="bg-gold hover:bg-gold/90">
+                <Button className="bg-primary hover:bg-primary/90">
                   <Plus className="mr-2 h-4 w-4" /> Create Album
                 </Button>
               </DialogTrigger>
@@ -293,12 +298,13 @@ const Gallery = () => {
                       <CardDescription>{selectedAlbum.description}</CardDescription>
                     )}
                   </div>
-                  <Dialog open={openPhotoUpload} onOpenChange={setOpenPhotoUpload}>
-                    <DialogTrigger asChild>
-                      <Button className="bg-secondary hover:bg-secondary/90 text-surface">
-                        <Upload className="mr-2 h-4 w-4" /> Upload Photo
-                      </Button>
-                    </DialogTrigger>
+                  {user && (
+                    <Dialog open={openPhotoUpload} onOpenChange={setOpenPhotoUpload}>
+                      <DialogTrigger asChild>
+                        <Button className="bg-secondary hover:bg-secondary/90">
+                          <Upload className="mr-2 h-4 w-4" /> Upload Photo
+                        </Button>
+                      </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle className="font-serif text-primary">Upload Photo</DialogTitle>
@@ -338,6 +344,7 @@ const Gallery = () => {
                       </div>
                     </DialogContent>
                   </Dialog>
+                  )}
                 </div>
               </CardHeader>
             </Card>
