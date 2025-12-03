@@ -68,15 +68,18 @@ export default {
         warning: "hsl(var(--warning))",
         error: "hsl(var(--error))",
         info: "hsl(var(--info))",
+        gold: "hsl(var(--gold))",
       },
       backgroundImage: {
         'gradient-warm': 'var(--gradient-warm)',
         'gradient-subtle': 'var(--gradient-subtle)',
         'gradient-premium': 'var(--gradient-premium)',
+        'gradient-card': 'var(--gradient-card)',
       },
       boxShadow: {
         'gold': 'var(--shadow-gold)',
         'elegant': 'var(--shadow-elegant)',
+        'teal': 'var(--shadow-teal)',
       },
       fontFamily: {
         'serif': ['Playfair Display', 'serif'],
