@@ -218,7 +218,7 @@ const Gallery = () => {
               </Button>
             )}
           </div>
-          {userRole === "admin" && !selectedAlbum && (
+          {user && !selectedAlbum && (
             <Dialog open={openAlbum} onOpenChange={setOpenAlbum}>
               <DialogTrigger asChild>
                 <Button className="bg-primary hover:bg-primary/90">
